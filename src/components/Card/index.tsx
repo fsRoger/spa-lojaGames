@@ -1,30 +1,44 @@
-import React from 'react'
-import { StyledCard, ImageCard, ContentCard } from "./styles"
-//import jogos from "../../../dados"
+import React from 'react';
+import { StyledCard, ButtomContainer, PlatformsContainer } from "./styles";
 
 
 
-export function Card({ props }) {
+
+export function Card({ linkImagem, nome, preco, plataformas }) {
   return (
     <>
       <StyledCard>
-        <a >
-          <div >
+
+        <div >
+          {linkImagem && (
             <img
               width={380}
               height={200}
-              src={props.linkImagem}
+              src={linkImagem}
               alt="Thumbnail do projeto"
-            />
-          </div>
-          <div className="content">
-            <span className="title">{props.nome}</span>
-            <span className="name">{props.descricao}</span>
-            <span className="description">{props.preco}</span>
-            <span className="title">{props.plataformas}</span>
-            <span className="title">{props.lojas}</span>
-          </div>
-        </a>
+            />)}
+        </div>
+        <div className="content">
+          <h2 className="name">{nome}</h2>
+          < ButtomContainer>
+
+
+            <PlatformsContainer>
+              {plataformas.map((plataforma, index) => (
+                <h5 key={index} className="plataformas">
+                  {plataforma}
+                </h5>
+              ))}
+            </PlatformsContainer>
+          </ButtomContainer>
+        </div>
+        <ButtomContainer>
+          <h5 className="price">R$ {preco} BRL</h5>
+          <button className='compre'>Compre</button>
+          <button className='favorito'><i className="bi bi-heart"></i></button>
+        </ButtomContainer>
+
+
       </StyledCard>
     </>
 

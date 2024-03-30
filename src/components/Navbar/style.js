@@ -1,14 +1,25 @@
 import styled from "styled-components";
 
 export const NavStyled = styled.nav`
+
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 100%;
   padding: 1rem;
-  background-color: #fff;
+  background-color: #101F2D;
   z-index: 1;
-  box-shadow: regba(17,17,26,0.1)0px 1px 0px;
+  
+
+  form{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    padding: 1rem;
+ 
+  }
 
 `;
 
@@ -17,7 +28,8 @@ export const ImageLogo = styled.img`
   height: 3.5rem;
   object-fit: cover;
   cursor: pointer;
-`
+  row-gap: 2rem;
+`;
 
 export const InputSpace = styled.div`
   position: relative;
@@ -25,8 +37,9 @@ export const InputSpace = styled.div`
   display: flex;
   align-items: center;
 
-  i{
-    position: absolute;
+  
+    i{
+    position: flex;
     top: 1;
     right: 0.2rem;
     z-index: 10;
@@ -34,8 +47,8 @@ export const InputSpace = styled.div`
     background-color: #f5f5f5;
     color: #757575;
     border-radius: 0.3rem;
-    padding: 0.5rem;
-  }
+    padding: 0.6rem;
+    }
 
   input{
     outline: none;
@@ -45,8 +58,9 @@ export const InputSpace = styled.div`
     border: none;
     width: 100%;
     border-radius: 0.3rem;
+    left: 10rem;
 
-    :focus{
+    &:focus{
       border: 1px solid #0bade3;
     }
   }
@@ -68,7 +82,7 @@ export const ButtomStyled = styled.button`
   letter-spacing: 0.1rem;
   text-transform: uppercase;
 
-  :hover{
-    background-color: #0aB6af;
+  &:hover{
+    background-color: #00E205;
   }
 `;
