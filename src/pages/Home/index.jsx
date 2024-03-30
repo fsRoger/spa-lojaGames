@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react"
-
 import { Card } from '../../components/Card';
 import Footer from '../../components/Footer';
 import { Navbar } from "../../components/Navbar";
 import { getAllGames } from '../../services/productServices';
 import { StyledGrid } from './style';
-import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-
 
 export default function Home() {
   const [product, setProduct] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   async function findAllGames() {
@@ -27,19 +25,23 @@ export default function Home() {
 
   console.log("produtos", product)
 
+  const filteredProducts = product.filter(item =>
+    item.nome.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
+      <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <StyledGrid >
-        {product.map((item, i) => (
+        {filteredProducts.map((item, i) => (
           <>
             <div
-              // to={`/details/${item.id}`} key={item.id}
+              key={i}
               onClick={() =>
                 navigate("/details", {
                   state: { id: item._id },
                 })
               }
-              key={i}
             >
               <Card
                 nome={item.nome}

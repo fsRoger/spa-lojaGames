@@ -1,27 +1,28 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Toaster } from "react-hot-toast";
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import { GlobalStyled } from './GlobalStyled'
 import Home from './pages/Home'
-import { Navbar } from './components/Navbar'
+// import { Navbar } from './components/Navbar'
 import Details from './pages/Details/index.jsx'
-import { Search } from './pages/Search/index.jsx'
+// import { Search } from './pages/Search/index.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navbar />,
+    // element: <Navbar />,
     children: [
       {
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/search/:title",
-        element: <Search />
-      },
+      // {
+      //   path: "/search/:title",
+      //   element: <Search />
+      // },
       {
         path: "/details",
         element: <Details />
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <GlobalStyled />
+    <Toaster />
     <RouterProvider router={router} />
   </React.StrictMode>,
 )

@@ -23,7 +23,6 @@ export const StyledCard = styled.div`
   }
 
     img {
-      
       width: 400px;
       height: 300px;
       object-fit: cover;
@@ -46,7 +45,6 @@ export const StyledCard = styled.div`
       margin-top: -40px;
       padding-bottom: 20px;
     }
-   
   }
 `;
 
@@ -76,7 +74,6 @@ export const ButtomContainer = styled.div`
   flex-direction: row;
 
   h5.price {
-
       font-size: x-large;
       position: relative;
       flex: auto;
@@ -90,8 +87,6 @@ export const ButtomContainer = styled.div`
         transition:all;
       }
   }
-  
-  
   
   button.compre{
     gap: 1rem;
@@ -116,8 +111,7 @@ export const ButtomContainer = styled.div`
     &:hover{
       background-color: #00E205;
       transform: scale(1.1); 
-
-        transition:all;
+      transition:all;
     }
   }
 
@@ -144,7 +138,6 @@ export const ButtomContainer = styled.div`
       &:hover{
         background-color: #00E205;
         transform: scale(1.1); 
-     
         transition:all;
       }
   }

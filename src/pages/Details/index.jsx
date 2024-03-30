@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { getProductById } from '../../services/productServices'; // Supondo que você tenha uma função getGameById
 // import GoogleMap from '../../components/Googlemaps/GoogleMap';
 import StoreMap from '../../components/StoreMap';
+import ModalPurchase from '../../components/ModalPurchase';
+import DiscountQRCode from '../../components/DiscountQRCode';
 
 
 export default function Details() {
@@ -12,6 +14,7 @@ export default function Details() {
   const { state } = useLocation();
   const [locations, setLocations] = useState([]);
   const [storeNames, setStoreNames] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   async function fetchProduct() {
     try {
@@ -63,6 +66,9 @@ export default function Details() {
 
   console.log("produto", product)
   console.log("locationssssssssssssss", location)
+  const closeModal = () => {
+    setModalOpen(false);
+  }
 
   return (
     <>
@@ -73,11 +79,17 @@ export default function Details() {
         <p>Preço: {product.preco}</p>
         <p>Plataformas: {product.plataformas ? product.plataformas.join(", ") : "N/A"}</p>
         <span className="lojas">{product.lojas}</span>
+        <button onClick={() => setModalOpen(true)}>Comprar</button>
+
+        <DiscountQRCode />
         {/* <GoogleMap /> */}
         {locations.map((location, index) => (
           <StoreMap key={index} locations={[location]} storeNames={[storeNames[index]]} />
         ))}
+
       </div>
+
+      {modalOpen && <ModalPurchase closeModal={closeModal} productId={state.id} />}
     </ >
   );
 }
