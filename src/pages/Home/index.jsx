@@ -15,16 +15,11 @@ export default function Home() {
   async function findAllGames() {
     const productResponse = await getAllGames();
     setProduct(productResponse.data);
-
-    console.log(productResponse.data);
   }
 
   useEffect(() => {
     findAllGames();
-
   }, []);
-
-  console.log("produtos", product)
 
   const filteredProducts = product.filter(item =>
     item.nome.toLowerCase().includes(searchTerm.toLowerCase())

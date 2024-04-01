@@ -2,7 +2,11 @@ import React from 'react';
 import { StyledCard, ButtomContainer, PlatformsContainer } from "./styles";
 
 export function Card({ linkImagem, nome, preco, plataformas }) {
-  const formattedPrice = preco.price ? preco.price.toFixed(2) : '0.00';
+  const formattedPrice = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2
+  }).format(preco);
   return (
     <>
       <StyledCard>
@@ -28,7 +32,7 @@ export function Card({ linkImagem, nome, preco, plataformas }) {
           </ButtomContainer>
         </div>
         <ButtomContainer>
-          <h5 className="price">R$ {formattedPrice} BRL</h5>
+          <h5 className="price">{formattedPrice} BRL</h5>
           <button className='compre'>Compre</button>
         </ButtomContainer>
       </StyledCard>

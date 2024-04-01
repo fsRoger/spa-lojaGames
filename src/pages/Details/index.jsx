@@ -17,6 +17,8 @@ export default function Details() {
   const [storeNames, setStoreNames] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
+
+
   async function fetchProduct() {
     try {
       const response = await getProductById(state.id);
@@ -25,7 +27,7 @@ export default function Details() {
 
       const locationsPromises = response.data.product?.lojas.map(storeName => fetchStoreLocation(storeName));
       const resolvedLocations = await Promise.all(locationsPromises);
-      const validLocations = resolvedLocations.filter(loc => loc); // Filtra locais válidos (não nulos)
+      const validLocations = resolvedLocations.filter(loc => loc);
       const validStoreNames = response.data.product?.lojas.filter((_, index) => resolvedLocations[index]).map(name => name); // Filtra nomes de lojas correspondentes aos locais válidos
       setLocations(validLocations);
       setStoreNames(validStoreNames);
@@ -61,10 +63,15 @@ export default function Details() {
   if (!product) {
     return <div>Loading...</div>;
   }
-
   const closeModal = () => {
     setModalOpen(false);
   }
+
+  const formattedPrice = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2
+  }).format(product.preco);
 
   return (
     <>
@@ -80,7 +87,7 @@ export default function Details() {
                 className='compre'>
                 Comprar
               </button>
-              <p className='preco'>Preço: {product.preco}</p>
+              <p className='preco'>Preço: {formattedPrice}</p>
               <p className='plataformas'>Plataformas: {product.plataformas ? product.plataformas.join(", ") : "N/A"}</p>
             </div>
           </div>
@@ -88,10 +95,6 @@ export default function Details() {
             <p className="descricao">{product.descricao}</p>
           </div>
         </div>
-
-
-
-
 
         {modalOpen && <ModalPurchase closeModal={closeModal} productId={state.id} />}
         <DiscountQRCode />
