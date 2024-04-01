@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
 import { Card } from '../../components/Card';
-import Footer from '../../components/Footer';
+
 import { Navbar } from "../../components/Navbar";
 import { getAllGames } from '../../services/productServices';
-import { StyledGrid } from './style';
+
 import { useNavigate } from "react-router-dom";
+import { StyledGrid } from './style';
 
 export default function Home() {
   const [product, setProduct] = useState([]);
@@ -54,7 +55,6 @@ export default function Home() {
           </>
         ))}
       </StyledGrid>
-      <Footer />
     </>
   )
 }

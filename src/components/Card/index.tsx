@@ -2,6 +2,7 @@ import React from 'react';
 import { StyledCard, ButtomContainer, PlatformsContainer } from "./styles";
 
 export function Card({ linkImagem, nome, preco, plataformas }) {
+  const formattedPrice = preco.price ? preco.price.toFixed(2) : '0.00';
   return (
     <>
       <StyledCard>
@@ -27,9 +28,8 @@ export function Card({ linkImagem, nome, preco, plataformas }) {
           </ButtomContainer>
         </div>
         <ButtomContainer>
-          <h5 className="price">R$ {preco} BRL</h5>
+          <h5 className="price">R$ {formattedPrice} BRL</h5>
           <button className='compre'>Compre</button>
-          <button className='favorito'><i className="bi bi-heart"></i></button>
         </ButtomContainer>
       </StyledCard>
     </>

@@ -12,7 +12,7 @@ export const GlobalStyled = createGlobalStyle`
 
   body{
     max-width: 100vw;
-    height: 100vw;
+    max-height: 100vw;
     background-color: #161618;
   }
 `;

@@ -5,22 +5,15 @@ export const NavStyled = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 100%;
+  width: auto;
   padding: 1rem;
   background-color: #101F2D;
   z-index: 1;
   
-
-  form{
-    
+  div.container{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 100%;
-    padding: 1rem;
- 
+    gap: 2rem;
   }
-
 `;
 
 export const ImageLogo = styled.img`
@@ -37,10 +30,9 @@ export const InputSpace = styled.div`
   display: flex;
   align-items: center;
 
-  
     i{
     position: flex;
-    top: 1;
+    
     right: 0.2rem;
     z-index: 10;
     border: none;
@@ -51,6 +43,7 @@ export const InputSpace = styled.div`
     }
 
   input{
+    position: flex;
     outline: none;
     font-size: 1rem;
     padding: 0.6rem;
@@ -67,22 +60,3 @@ export const InputSpace = styled.div`
 
 `;
 
-export const ButtomStyled = styled.button`
-  background-color: #0bade3;
-  border: none;
-  outline:none;
-  font-size:1rem;
-  padding: 0.4rem 1rem;
-  color: #fff;
-  transition: all 0.4s ease-in-out;
-  cursor: pointer;
-  border-radius: 0.3rem;
-  font-family: Roboto, arial;
-  font-weight: 500;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-
-  &:hover{
-    background-color: #00E205;
-  }
-`;

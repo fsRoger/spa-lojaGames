@@ -8,11 +8,6 @@ export function getAllGames() {
   return response;
 }
 
-export function searchProduct(title) {
-  const response = axios.get(`${baseURL}/product/search?title=${title}`);
-  return response;
-}
-
 export async function getProductById(id) {
   const response = await axios.get(`${baseURL}/product/${id}`);
   return response;

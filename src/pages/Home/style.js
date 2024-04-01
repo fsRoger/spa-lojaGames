@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const StyledGrid = styled.div`
   display: grid;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
+  min-height: 100vh;
+  margin: 1rem 0rem 2rem 4rem ;
   
   @media (min-width: 640px) {
     grid-template-columns: repeat( 1fr); 
+    align-items: center;
+  justify-content: center;
     
   }
 
@@ -26,9 +27,7 @@ export const StyledGrid = styled.div`
     grid-template-columns: repeat(3, 1fr); 
   }
 
-  @media (min-width: 1600px) {
-    grid-template-columns: repeat(4, 1fr); 
-  }
+ 
 `;
 
 

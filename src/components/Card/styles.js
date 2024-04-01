@@ -114,32 +114,5 @@ export const ButtomContainer = styled.div`
       transition:all;
     }
   }
-
-    button.favorito{
-      gap: 1rem;
-      left: 6rem;
-      bottom: 4rem;
-      position: relative;
-      width: 10%;
-      height: 3rem;
-      background-color: #0bade3;
-      border: none;
-      outline:none;
-      font-size:1rem;
-      color: #fff;
-      transition: all 0.4s ease-in-out;
-      cursor: pointer;
-      border-radius: 0.3rem;
-      font-family: Roboto, arial;
-      font-weight: 600;
-      letter-spacing: 0.1rem;
-      text-transform: uppercase;
-
-      &:hover{
-        background-color: #00E205;
-        transform: scale(1.1); 
-        transition:all;
-      }
-  }
 `;
 

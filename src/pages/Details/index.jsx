@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getProductById } from '../../services/productServices'; // Supondo que você tenha uma função getGameById
-// import GoogleMap from '../../components/Googlemaps/GoogleMap';
+import { getProductById } from '../../services/productServices';
+
 import StoreMap from '../../components/StoreMap';
 import ModalPurchase from '../../components/ModalPurchase';
 import DiscountQRCode from '../../components/DiscountQRCode';
 
+import { ContainerMap, DetailsContainer, LojasStyled } from './style';
+import { Navbar } from '../../components/Navbar';
+
 
 export default function Details() {
-  // const { id } = useParams();
-  // console.log(id)
   const [product, setProduct] = useState();
   const { state } = useLocation();
   const [locations, setLocations] = useState([]);
@@ -53,43 +54,58 @@ export default function Details() {
 
   useEffect(() => {
     if (state?.id) {
-
       fetchProduct();
-
     }
-
   }, []);
 
   if (!product) {
     return <div>Loading...</div>;
   }
 
-  console.log("produto", product)
-  console.log("locationssssssssssssss", location)
   const closeModal = () => {
     setModalOpen(false);
   }
 
   return (
     <>
-      <div >
-        <h2>{product.nome}</h2>
-        <img src={product.linkImagem} alt={product.nome} />
-        <p className="description">{product.descricao}</p>
-        <p>Preço: {product.preco}</p>
-        <p>Plataformas: {product.plataformas ? product.plataformas.join(", ") : "N/A"}</p>
-        <span className="lojas">{product.lojas}</span>
-        <button onClick={() => setModalOpen(true)}>Comprar</button>
+      <Navbar />
+      <DetailsContainer >
+        <div className='section'>
+          <div className='imagem'>
+            <h2>{product.nome}</h2>
+            <img src={product.linkImagem} alt={product.nome} />
+            <div>
+              <button
+                onClick={() => setModalOpen(true)}
+                className='compre'>
+                Comprar
+              </button>
+              <p className='preco'>Preço: {product.preco}</p>
+              <p className='plataformas'>Plataformas: {product.plataformas ? product.plataformas.join(", ") : "N/A"}</p>
+            </div>
+          </div>
+          <div className='descricao'>
+            <p className="descricao">{product.descricao}</p>
+          </div>
+        </div>
 
+
+
+
+
+        {modalOpen && <ModalPurchase closeModal={closeModal} productId={state.id} />}
         <DiscountQRCode />
-        {/* <GoogleMap /> */}
+
+      </DetailsContainer>
+      <LojasStyled>
+        <h3> Compre online ou nas seguintes lojas:</h3>
+        <p >{product.lojas}</p>
+      </LojasStyled>
+      <ContainerMap >
         {locations.map((location, index) => (
           <StoreMap key={index} locations={[location]} storeNames={[storeNames[index]]} />
         ))}
-
-      </div>
-
-      {modalOpen && <ModalPurchase closeModal={closeModal} productId={state.id} />}
+      </ContainerMap >
     </ >
   );
 }

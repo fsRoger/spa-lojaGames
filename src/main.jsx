@@ -6,26 +6,29 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import { GlobalStyled } from './GlobalStyled'
 import Home from './pages/Home'
-// import { Navbar } from './components/Navbar'
+
 import Details from './pages/Details/index.jsx'
-// import { Search } from './pages/Search/index.jsx'
+import Footer from './components/Footer';
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    // element: <Navbar />,
+
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <>
+          <Home />
+          <Footer />
+        </>
       },
-      // {
-      //   path: "/search/:title",
-      //   element: <Search />
-      // },
       {
         path: "/details",
-        element: <Details />
+        element: <>
+          <Details />
+          <Footer />
+        </>
       },
     ],
   },

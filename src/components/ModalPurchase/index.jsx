@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { createPurchase } from '../../services/purchaseService';
 import { toast } from "react-hot-toast";
+import { StyledModal } from './style';
 
 const ModalPurchase = ({ closeModal, productId }) => {
   const navigate = useNavigate();
@@ -54,104 +55,100 @@ const ModalPurchase = ({ closeModal, productId }) => {
 
   return (
     <main>
-      <h1 className="">
-        Comprar
-      </h1>
-      <button onClick={closeModal}>
-        sair
-      </button>
-      <form
-        onSubmit={handleSubmit(registerPurchase)}
-        className=""
-      >
-
-        <div className="">
-          <label
-            className=""
-            htmlFor="nome"
-          >
-            Nome
-          </label>
-          <input
-            {...register("nome")}
-            className=""
-            id="nome"
-            type="text"
-            name="nome"
-            placeholder="..."
-            required
-          />
-        </div>
-
-        <div className="">
-          <label
-            className=""
-            htmlFor="telefone"
-          >
-            Telefone
-          </label>
-          <input
-            {...register("telefone")}
-            className=""
-            id="telefone"
-            type="number"
-            name="telefone"
-            placeholder="..."
-            required
-          />
-        </div>
-
-        <div className="">
-          <label
-            className=""
-            htmlFor="endereco"
-          >
-            Endereço
-          </label>
-          <input
-            {...register("endereco")}
-            className=""
-            id="endereco"
-            type="text"
-            name="endereco"
-            placeholder="..."
-            required
-          />
-        </div>
-
-        <div className="">
-          <label
-            className=""
-            htmlFor="documento"
-          >
-            Documento
-          </label>
-          <input
-            {...register("documento")}
-            className=""
-            id="documento"
-            type="text"
-            name="documento"
-            placeholder="..."
-            required
-          />
-        </div>
-
-        <div className="">
-          <button
-            onClick={() => navigate("/")}
-            className=""
-          >
-            Voltar
-          </button>
-          <button
-            type="submit"
-            className=""
-          >
-            Salvar
-          </button>
-        </div>
-      </form>
+      <StyledModal>
+        <h1 className="compre"></h1>
+        <button
+          className="fechar" onClick={closeModal}>
+          X
+        </button>
+        <form
+          onSubmit={handleSubmit(registerPurchase)}
+          className=""
+        >
+          <div className="modalForm">
+            <label
+              className="labelStyle"
+              htmlFor="nome"
+            >
+              Nome
+            </label>
+            <input
+              {...register("nome")}
+              className="inputStyle"
+              id="nome"
+              type="text"
+              name="nome"
+              placeholder="..."
+              required
+            />
+          </div>
+          <div className="modalForm">
+            <label
+              className="labelStyle"
+              htmlFor="telefone"
+            >
+              Telefone
+            </label>
+            <input
+              {...register("telefone")}
+              className="inputStyle"
+              id="telefone"
+              type="number"
+              name="telefone"
+              placeholder="..."
+              required
+            />
+          </div>
+          <div className="modalForm">
+            <label
+              className="labelStyle"
+              htmlFor="endereco"
+            >
+              Endereço
+            </label>
+            <input
+              {...register("endereco")}
+              className="inputStyle"
+              id="endereco"
+              type="text"
+              name="endereco"
+              placeholder="..."
+              required
+            />
+          </div>
+          <div className="modalForm">
+            <label
+              className="labelStyle"
+              htmlFor="documento"
+            >
+              Documento
+            </label>
+            <input
+              {...register("documento")}
+              className="inputStyle"
+              id="documento"
+              type="text"
+              name="documento"
+              placeholder="..."
+              required
+            />
+          </div>
+          <div className="">
+            <button
+              onClick={() => navigate("/")}
+              className="sair"
+            >
+              Sair
+            </button>
+            <button
+              type="submit"
+              className="salvar"
+            >
+              Salvar
+            </button>
+          </div>
+        </form>
+      </StyledModal>
     </main>
   )
 }

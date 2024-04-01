@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from "../../assets/logo.jpeg";
-import { ButtomStyled, NavStyled, ImageLogo, InputSpace } from './style';
+import { NavStyled, ImageLogo, InputSpace } from './style';
 import { Link, Outlet } from 'react-router-dom';
 
 export function Navbar({ searchTerm, setSearchTerm }) {
@@ -8,7 +8,7 @@ export function Navbar({ searchTerm, setSearchTerm }) {
   return (
     <>
       <NavStyled>
-        <div>
+        <div className='container'>
           <InputSpace>
             <button type="submit">
               <i className='bi bi-search'></i>
@@ -23,7 +23,6 @@ export function Navbar({ searchTerm, setSearchTerm }) {
 
           <Link to="/"><ImageLogo src={logo} alt="Logo"></ImageLogo></Link>
 
-          <ButtomStyled>Entrar</ButtomStyled>
         </div>
       </NavStyled>
       <Outlet />
