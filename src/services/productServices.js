@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 
-//const baseURL = 'https://api-lojagames.up.railway.app';
-const baseURL = 'http://localhost:3000';
+const baseURL = 'https://api-lojagames.up.railway.app';
+
 export function getAllGames() {
   const response = axios.get(`${baseURL}/product`);
   return response;

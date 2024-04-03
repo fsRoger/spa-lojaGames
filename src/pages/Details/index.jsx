@@ -19,7 +19,7 @@ export default function Details() {
 
   async function fetchApiKey() {
     try {
-      const response = await fetch(`http://localhost:3000/details`);
+      const response = await fetch(`https://api-lojagames.up.railway.app/details`);
       const data = await response.json();
       return data.apiKey;
     } catch (error) {
