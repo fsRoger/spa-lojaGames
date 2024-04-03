@@ -6,10 +6,10 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['react-hot-toast', 'react-leaflet'], // Lista combinada de módulos externos
+      external: ['react-hot-toast', 'react-leaflet', 'qrcode.react'], // Lista combinada de módulos externos
     },
   },
   optimizeDeps: {
-    exclude: ['react-hot-toast', 'react-leaflet'], // Lista combinada de módulos excluídos
+    exclude: ['react-hot-toast', 'react-leaflet', 'qrcode.react'], // Lista combinada de módulos excluídos
   },
 });
