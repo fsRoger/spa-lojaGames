@@ -17,18 +17,28 @@ export default function Details() {
   const [storeNames, setStoreNames] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
 
-
+  async function fetchApiKey() {
+    try {
+      const response = await fetch(`http://localhost:3000/details`);
+      const data = await response.json();
+      return data.apiKey;
+    } catch (error) {
+      console.error('Erro ao buscar a API key:', error);
+      throw error;
+    }
+  }
 
   async function fetchProduct() {
     try {
+      const apiKey = await fetchApiKey();
       const response = await getProductById(state.id);
 
       setProduct(response.data.product);
 
-      const locationsPromises = response.data.product?.lojas.map(storeName => fetchStoreLocation(storeName));
+      const locationsPromises = response.data.product?.lojas.map(storeName => fetchStoreLocation(storeName, apiKey));
       const resolvedLocations = await Promise.all(locationsPromises);
       const validLocations = resolvedLocations.filter(loc => loc);
-      const validStoreNames = response.data.product?.lojas.filter((_, index) => resolvedLocations[index]).map(name => name); // Filtra nomes de lojas correspondentes aos locais válidos
+      const validStoreNames = response.data.product?.lojas.filter((_, index) => resolvedLocations[index]).map(name => name);
       setLocations(validLocations);
       setStoreNames(validStoreNames);
     } catch (error) {
@@ -36,9 +46,8 @@ export default function Details() {
     }
   }
 
-  async function fetchStoreLocation(storeName) {
-    const apiKey = 'AIzaSyCmuTYZXFdVUsjYteEdXKp8tutJV6iqNk4';
-    let data
+  async function fetchStoreLocation(storeName, apiKey) {
+    let data;
     await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(storeName)}&key=${apiKey}`).then((response) => response.json())
       .then((d) => {
         data = d
